@@ -1,60 +1,61 @@
+/* Angel Malaver CI 30310383 */
 #include <stdio.h>
 #include <string.h>
 
-struct Musica { 
-    char nombre [20]; 
+struct musica { 
+    char nombre[20]; 
     float precio; 
-    int disponibilidad; 
+    int cantidad; 
 
-    struct Details {
-        char artistasdisquera [20]; 
-        char genre [15]; 
-        int realesedate; 
-    } details;
+    struct inf { 
+        char artista[20]; 
+        char genre[15]; 
+        int launchYear; 
+    } inf;
 };
 
-struct ClientesD { 
-    char nombre [20]; 
-    char contacto [20];
-    float balance; 
-    struct Musica library [100];
+struct clientes {
+    char nombre[20]; 
+    char contacto[20]; 
+    float saldo; 
+    struct musica lib[100];
 };
 
-struct Musica LT[100];
-int cantidaddecanciones=0;
-struct clientesList[100]; 
-int cantidaddeCl=0;
+struct musica musicas[100]; 
+int musicacosto=0;
+struct clientes clientess[100]; 
+int clientescosto=0;
 char *generos[15] = {"tristes", "rap", "pop", "rock", "house", "chill", "trap", "tumbados", "religiosa"}; 
 
-struct ClientesD getClient(char nombre[], struct Clientes L[], int tamano) {
+struct clientes getclientes(char nombre[], struct clientes clientess[], int tamano) {
     for (int i=0; i<tamano; i++) {
-        if (!strcmp(nombre, clients[i].nombre)) 
-            return clients[i]; 
+        if (!strcmp(nombre, clientess[i].nombre)) 
+            return clientess[i];
     }
-    struct ClientesD failed = {"NULL"};
+    struct clientes failed = {"NULL"};
     return failed;
 }
 
-int getClientIndex(char nombre[], struct Clientes L[], int tamano) {
+int getclientesindices(char nombre[], struct clientes clientess[], int tamano) {
     for (int i=0; i<tamano; i++) {
-        if (!strcmp(nombre, clients[i].nombre))
+        if (!strcmp(nombre, clientess[i].nombre)) 
             return i; 
     }
     return -1;
 
 }
 
-struct Musica getMusica(char nombre[], struct Musica LT[], int tamano) {
+struct musica getmusica(char nombre[], struct musica musicas[], int tamano) {
     for (int i=0; i<tamano; i++) {
         if (!strcmp(nombre, musicas[i].nombre)) 
             return musicas[i]; 
     }
-    struct Musica failed = {"NULL"};
+    struct musica failed = {"NULL"};
     return failed;
 
 }
 
-int musicID(char nombre[], struct Musica LT[], int tamano) {
+int getmusicaindices(char nombre[], struct musica musicas[], int tamano) {
     for (int i=0; i<tamano; i++) {
         if (!strcmp(nombre, musicas[i].nombre)) 
             return i; 
@@ -71,13 +72,13 @@ int search(char key[], char *array[], int tamano) {
     return 0;
 }
 
-void line(int tamano, char character) {
+void line(int tamano, char caract) {
     for (int i=0; i<tamano; i++)
-        printf("%c", character);
+        printf("%c", caract);
     printf("\n");
 }
 
-char* space(int precio) {
+char* ES(int precio) {
     if (precio < 10)
         return "   ";
     else if (precio < 100)
@@ -95,53 +96,53 @@ char* rplchr(char string[], int tamano) {
     return string;
 }
 
-int getLibrarySize(struct ClientesD clientesd) {
+int getlibtamano(struct clientes clientes) {
     int tamano = 0;
     for (int i=0; i<100; i++) {
-        if (strcmp(clientesd.library[i].nombre, ""))
+        if (strcmp(clientes.lib[i].nombre, ""))
             tamano++;
     }   
     return tamano;
 }
 
-void listMusicas() {
+void listmusicas() {
     int tamano = sizeof(musicas)/sizeof(musicas[0]);
     line(93, '-');
 
-        printf("| %-20s | %-20s | %-15s | %-5s | %-9s | %-6s |\n", "Nombre", "Desarrollador", "Genero", "Año", "Precio", "Disponibilidad");
+        printf("| %-20s | %-20s | %-15s | %-5s | %-9s | %-6s |\n", "Nombre", "Desarrollador", "Genero", "Año", "Precio", "cantidad");
     line(93, '-');
     for (int i=0; i<tamano; i++) {
         if (strcmp(musicas[i].nombre, ""))
-            printf("| %-20s | %-20s | %-15s | %04d | $ %-2.2f%s | %-6d |\n", rplchr(musicas[i].nombre,20), rplchr(musicas[i].details.artistas o disquera,20), musicas[i].details.genre, musicas[i].details.realese date, musicas[i].precio, space(musicas[i].precio), musicas[i].disponibilidad);
+            printf("| %-20s | %-20s | %-15s | %04d | $ %-2.2f%s | %-6d |\n", rplchr(musicas[i].nombre,20), rplchr(musicas[i].inf.artista,20), musicas[i].inf.genre, musicas[i].inf.launchYear, musicas[i].precio, ES(musicas[i].precio), musicas[i].cantidad);
 
     }
     line(93, '-');
 }
 
-void showLibrary(struct Musica musicaList[], int tamano) {
+void showlib(struct musica musicaList[], int tamano) {
     line(65,'-');
     printf("| %-20s | %-15s | %-20s |\n", "Nombre", "Genero", "Desarrollador");
     line(65,'-');
     for (int i=0; i<tamano; i++) {
-        printf("| %-20s | %-15s | %-20s |\n", rplchr(musicaList[i].nombre, 20), musicaList[i].details.genre, rplchr(musicaList[i].details.artistas o disquera, 20));
+        printf("| %-20s | %-15s | %-20s |\n", rplchr(musicaList[i].nombre, 20), musicaList[i].inf.genre, rplchr(musicaList[i].inf.artista, 20));
     }
     line(65,'-');
 
 }
 
-void listClients() {
+void listclientess() {
     line(60,'-');
-    printf("| %-20s | %-20s | %-10s | \n", "Nombre", "Contacto" , "Balance");
+    printf("| %-20s | %-20s | %-10s | \n", "Nombre", "contacto" , "saldo");
     line(60, '-');
-    for (int i=0; i<sizeof(clients)/sizeof(clients[0]); i++) {
-        if (strcmp(clients[i].nombre, ""))
-            printf("| %-20s | %-20s | $ %-3.3f%s |\n", rplchr(clients[i].nombre,20), clients[i].contacto, clients[i].balance, space(clients[i].balance));
+    for (int i=0; i<sizeof(clientess)/sizeof(clientess[0]); i++) {
+        if (strcmp(clientess[i].nombre, ""))
+            printf("| %-20s | %-20s | $ %-3.3f%s |\n", rplchr(clientess[i].nombre,20), clientess[i].contacto, clientess[i].saldo, ES(clientess[i].saldo));
     }
     line(60,'-');
 }
 
-void prefabs() { 
-    struct Musica pg[] = {
+void preFac() { // Datos preseleccionados
+   struct Musica pg[] = {
         { "Jugaste y Sufri"     , 10.00, 50, { "Eslabon Armando"    , "tristes"    , 2020 } },
         { "!AM FREESTYLE"       , 9.99 , 70, { "Joji    "           , "chill   "   , 2022 } },
         { "Electric Dreams"     , 9.99 , 20, { "Perturbator"        , "pop"        , 2010 } },
@@ -165,153 +166,155 @@ void prefabs() {
         musicas[g] = pg[g];
 
     for (int c=0; c<sizeof(pc)/sizeof(pc[0]); c++) {
-        pc[c].library[0].disponibilidad = 1;
-        clients[c] = pc[c];
+        pc[c].lib[0].cantidad = 1;
+        clientess[c] = pc[c];
     }
 }
 
-void agregarMusica() {
-    struct Musica test;
+void agregarmusica() {
+    struct musica test;
     printf("Nota: Los espacios no son en barra espaciadora son con (_) y (-)\n");
     printf("Nombre: ");              scanf("%s", &test.nombre);
     printf("Precio: ");              scanf("%f", &test.precio);
-    printf("artistas: ");            scanf("%s", &test.details.artistas o disquera);
-    printf("Genero: ");              scanf("%s", &test.details.genre);
-    printf("Año de lanzamiento: ");  scanf("%d", &test.details.realese date);
-    printf("Disponibilidad: ");      scanf("%d", &test.disponibilidad); 
+    printf("artista: ");             scanf("%s", &test.inf.artista);
+    printf("Genero: ");              scanf("%s", &test.inf.genre);
+    printf("Año de lanzamiento: ");  scanf("%d", &test.inf.launchYear);
+    printf("cantidad: ");               scanf("%d", &test.cantidad); 
 
-    if (test.precio<1 || test.details.realese date<1 || test.disponibilidad<1 ||!search(test.details.genre, generos, sizeof(generos)/sizeof(generos[0]))) {
+    if (test.precio<1 || test.inf.launchYear<1 || test.cantidad<1 ||!search(test.inf.genre, generos, sizeof(generos)/sizeof(generos[0]))) {
         printf("Datos invalidos, intente con otros\n");
-        agregarMusica();
+        agregarmusica();
     }
     else {
         strcpy(test.nombre, rplchr(test.nombre,20));
-        strcpy(test.details.artistas o disquera, rplchr(test.details.artistas o disquera, 20));
-        musicas[cantidad de canciones] = test;
-        cantidad de canciones++;
+        strcpy(test.inf.artista, rplchr(test.inf.artista, 20));
+        musicas[musicacosto] = test;
+        musicacosto++;
     }
 }
 
-void agregarClient() {
-    struct ClientesD test;
+void agregarclientes() {
+    struct clientes test;
 
     printf("Nota: Los espacios no son en barra espaciadora son con (_) y (-)\n");
-    printf("Nombre: ");             scanf("%s",&test.nombre);
-    printf("Contacto: ");         scanf("%s",&test.contacto);
-    printf("Balance de cuenta: "); scanf("%f",&test.balance);
+    printf("Nombre: ");            scanf("%s",&test.nombre);
+    printf("contacto: ");             scanf("%s",&test.contacto);
+    printf("saldo de cuenta: "); scanf("%f",&test.saldo);
 
-    if (test.balance<0) {
+    if (test.saldo<0) {
         printf("Datos invalidos, intente con otros\n");
-        agregarClient();
+        agregarclientes();
     }
     else {
         strcpy(test.nombre, rplchr(test.nombre, 20));
-        clients[cantidad de Cl] = test;
-        cantidad de Cl++;
+        clientess[clientescosto] = test;
+        clientescosto++;
     }
 }
 
-void asignaciones() { 
+void assignment() { 
     char nombre[20];
     printf("Nota: Los espacios no son en barra espaciadora son con (_) y (-)\n");
     printf("Ingrese el nombre de la cuenta a asignar: "); scanf("%s", &nombre);
 
-    struct ClientesD temp = getClient(rplchr(nombre,20), clients, sizeof(clients)/sizeof(clients[0]));
+    struct clientes temp = getclientes(rplchr(nombre,20), clientess, sizeof(clientess)/sizeof(clientess[0]));
     if (!strcmp(temp.nombre, "NULL")) {
         printf("Cuenta no encontrada, intente con otra\n");
-        asignaciones();
+        assignment();
     }
     else {
-        int index = getClientIndex(rplchr(nombre,20), clients, sizeof(clients)/sizeof(clients[0]));
+        int indices = getclientesindices(rplchr(nombre,20), clientess, sizeof(clientess)/sizeof(clientess[0]));
         
         float temp;
         printf("Ingese la cantidad a asignar: "); scanf("%f", &temp);
         if (temp > 0 || temp < 10000) 
-            clients[index].balance = temp;
+            clientess[indices].saldo = temp;
         else {
-            printf("Valor invalido, intente con otro\n");
-            asignaciones();
+            printf("Valor no encontrado, intente con otro\n");
+            assignment();
         }
     }
 }
 
-void lista de libreria() {
+void listlib() {
     char nombre[20];
 
     printf("Nota: Los espacios no son en barra espaciadora son con (_) y (-)\n");
     printf("Ingrese la cuenta a ver: "); 
     scanf("%s", &nombre);
 
-    struct ClientesD temp = getClient(rplchr(nombre,20), clients, (sizeof(clients)/sizeof(clients[0])));
-   
+    struct clientes temp = getclientes(rplchr(nombre,20), clientess, (sizeof(clientess)/sizeof(clientess[0])));
+    // printf(" %s | %s | %f \n", temp.nombre, temp.contacto, temp.saldo);
     if (!strcmp(temp.nombre, "NULL")) {
         printf("Esta cuenta no existe, intente de nuevo\n");
-        lista de libreria();
+        listlib();
     }
     else {
         line(65, '-');
         printf("| Biblioteca de: %-78s|\n", rplchr(temp.nombre,20));
-        showLibrary(temp.library, getLibrarySize(temp));
+        showlib(temp.lib, getlibtamano(temp));
     }
 }
 
 void comprar() {
-    char accountName[20], musicaName[20];
+    char accountnombre[20], musicanombre[20];
     printf("Nota: Los espacios no son en barra espaciadora son con (_) y (-)\n");
-    printf("Ingrese el nombre de la cuenta a utilizar: "); scanf("%s", &accountName);
-    printf("Ingrese el nombre del juego a comprar: ");     scanf("%s", &musicaName);
+    printf("Ingrese el nombre de la cuenta a utilizar: "); scanf("%s", &accountnombre);
+    printf("Ingrese el nombre del musica a comprar: ");     scanf("%s", &musicanombre);
     
-    strcpy(accountName, rplchr(accountName, 20));
-    strcpy(musicaName, rplchr(musicaName, 20));
-    struct ClientesD tempAccount = getClient(accountName, clients, sizeof(clients)/sizeof(clients[0]));
-    struct Musica tempMusica = getMusica(musicaName, musicas, sizeof(musicas)/sizeof(musicas[0]));
+    strcpy(accountnombre, rplchr(accountnombre, 20));
+    strcpy(musicanombre, rplchr(musicanombre, 20));
+    struct clientes tempAccount = getclientes(accountnombre, clientess, sizeof(clientess)/sizeof(clientess[0]));
+    struct musica tempmusica = getmusica(musicanombre, musicas, sizeof(musicas)/sizeof(musicas[0]));
 
-    if (strcmp(accountName, tempAccount.nombre) && strcmp(musicaName, tempMusica.nombre)) {
+    if (strcmp(accountnombre, tempAccount.nombre) && strcmp(musicanombre, tempmusica.nombre)) {
         printf("Datos invalidos, intente con otros\n");
         comprar();
     }
-    else if (tempMusica.precio > tempAccount.balance) {
-        printf("La compra no puede ser procesada, el dinero en la cuenta es insuficiente\n");
+    else if (tempmusica.precio > tempAccount.saldo) {
+        printf("error. Saldo insuficiente");
     }
     else {
-        int clientIndex = getClientIndex(accountName, clients, sizeof(clients)/sizeof(clients[0]));
-        int musicaIndex = musicID(musicaName, musicas, sizeof(musicas)/sizeof(musicas[0]));
-        tempMusica.disponibilidad = 1;
+        int clientesindices = getclientesindices(accountnombre, clientess, sizeof(clientess)/sizeof(clientess[0]));
+        int musicaindices = getmusicaindices(musicanombre, musicas, sizeof(musicas)/sizeof(musicas[0]));
+        tempmusica.cantidad = 1;
 
-        clients[clientIndex].library[getLibrarySize(tempAccount)] = tempMusica;
-        printf("La compra ha sido realizada con exito!\n");
+        clientess[clientesindices].lib[getlibtamano(tempAccount)] = tempmusica;
+        printf("La compra fue un exito, Muchas gracias.");
     }
 }
 
 void menu() {
     printf(
+
         "                                 \n"
         "                                 \n"
         "   Elija una opcion:             \n"
         "                                 \n"
-        " [1]  Agregar juego              \n"
-        " [2]  Listar juegos              \n"
+        " [1]  Agregar musica              \n"
+        " [2]  Listar musicas              \n"
         " [3]  Agregar cliente            \n"
         " [4]  Listar clientes            \n"
-        " [5]  Comprar juegos             \n"
+        " [5]  Comprar musicas             \n"
         " [6]  Asignar balance de cliente \n"
         " [7]  Ver biblioteca             \n"
         " [8]  Datos preseleccionados     \n"
         " [9]  Salir                      \n"
         "\n"
         " > "
+        
     );
     int opcion;
     scanf("%d", &opcion);
     switch (opcion) {
-        case 1: agregarMusica();     menu();  break;
-        case 2: listMusicas();   menu();  break;
-        case 3: agregarClient();   menu();  break;
-        case 4: listClients(); menu();  break;
+        case 1: agregarmusica();     menu();  break;
+        case 2: listmusicas();   menu();  break;
+        case 3: agregarclientes();   menu();  break;
+        case 4: listclientess(); menu();  break;
         case 5: comprar();         menu();  break;                                            
-        case 6: asignaciones();  menu();  break;
-        case 7: lista de libreria(); menu();  break;
-        case 8: prefabs();     menu();  break;
+        case 6: assignment();  menu();  break;
+        case 7: listlib(); menu();  break;
+        case 8: preFac();     menu();  break;
         case 9: break;
         default:
             printf("Opcion invalida, intente con otra\n");
