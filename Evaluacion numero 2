@@ -9,8 +9,8 @@ struct musica {
 
     struct inf { 
         char artista[20]; 
-        char genre[15]; 
-        int launchYear; 
+        char genero[15]; 
+        int estreno; 
     } inf;
 };
 
@@ -113,7 +113,7 @@ void listmusicas() {
     line(93, '-');
     for (int i=0; i<tamano; i++) {
         if (strcmp(musicas[i].nombre, ""))
-            printf("| %-20s | %-20s | %-15s | %04d | $ %-2.2f%s | %-6d |\n", rplchr(musicas[i].nombre,20), rplchr(musicas[i].inf.artista,20), musicas[i].inf.genre, musicas[i].inf.launchYear, musicas[i].precio, ES(musicas[i].precio), musicas[i].cantidad);
+            printf("| %-20s | %-20s | %-15s | %04d | $ %-2.2f%s | %-6d |\n", rplchr(musicas[i].nombre,20), rplchr(musicas[i].inf.artista,20), musicas[i].inf.genero, musicas[i].inf.estreno, musicas[i].precio, ES(musicas[i].precio), musicas[i].cantidad);
 
     }
     line(93, '-');
@@ -124,7 +124,7 @@ void showlib(struct musica musicaList[], int tamano) {
     printf("| %-20s | %-15s | %-20s |\n", "Nombre", "Genero", "Desarrollador");
     line(65,'-');
     for (int i=0; i<tamano; i++) {
-        printf("| %-20s | %-15s | %-20s |\n", rplchr(musicaList[i].nombre, 20), musicaList[i].inf.genre, rplchr(musicaList[i].inf.artista, 20));
+        printf("| %-20s | %-15s | %-20s |\n", rplchr(musicaList[i].nombre, 20), musicaList[i].inf.genero, rplchr(musicaList[i].inf.artista, 20));
     }
     line(65,'-');
 
@@ -177,11 +177,11 @@ void agregarmusica() {
     printf("Nombre: ");              scanf("%s", &test.nombre);
     printf("Precio: ");              scanf("%f", &test.precio);
     printf("artista: ");             scanf("%s", &test.inf.artista);
-    printf("Genero: ");              scanf("%s", &test.inf.genre);
-    printf("Año de lanzamiento: ");  scanf("%d", &test.inf.launchYear);
+    printf("Genero: ");              scanf("%s", &test.inf.genero);
+    printf("Año de lanzamiento: ");  scanf("%d", &test.inf.estreno);
     printf("cantidad: ");               scanf("%d", &test.cantidad); 
 
-    if (test.precio<1 || test.inf.launchYear<1 || test.cantidad<1 ||!search(test.inf.genre, generos, sizeof(generos)/sizeof(generos[0]))) {
+    if (test.precio<1 || test.inf.estreno<1 || test.cantidad<1 ||!search(test.inf.genero, generos, sizeof(generos)/sizeof(generos[0]))) {
         printf("Datos invalidos, intente con otros\n");
         agregarmusica();
     }
