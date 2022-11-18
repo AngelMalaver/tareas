@@ -109,7 +109,7 @@ void listmusicas() {
     int tamano = sizeof(musicas)/sizeof(musicas[0]);
     line(93, '-');
 
-        printf("| %-20s | %-20s | %-15s | %-5s | %-9s | %-6s |\n", "Nombre", "Desarrollador", "Genero", "Año", "Precio", "cantidad");
+        printf("| %-20s | %-20s | %-15s | %-5s | %-9s | %-6s |\n", "Nombre", "disquera", "Genero", "Año", "Precio", "cantidad");
     line(93, '-');
     for (int i=0; i<tamano; i++) {
         if (strcmp(musicas[i].nombre, ""))
@@ -121,7 +121,7 @@ void listmusicas() {
 
 void showlib(struct musica musicaList[], int tamano) {
     line(65,'-');
-    printf("| %-20s | %-15s | %-20s |\n", "Nombre", "Genero", "Desarrollador");
+    printf("| %-20s | %-15s | %-20s |\n", "Nombre", "Genero", "disquera");
     line(65,'-');
     for (int i=0; i<tamano; i++) {
         printf("| %-20s | %-15s | %-20s |\n", rplchr(musicaList[i].nombre, 20), musicaList[i].inf.genero, rplchr(musicaList[i].inf.artista, 20));
