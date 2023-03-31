@@ -74,9 +74,9 @@ int main(){
     EliminarElemento(pila);
     EliminarElemento(pila);
 
-    printf("\n========================================\n");
+    printf("\n");
     printf("\nAhora luego de haber eliminado 3 elementos\n");
-    printf("\n========================================\n\n");
+    printf("\n");
     Imprimir(pila);
 
 
